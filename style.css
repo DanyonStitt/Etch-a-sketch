@@ -1,0 +1,18 @@
+/* Header */
+    /* Put in the middle of the screen */
+    /* In a flex box */
+    /* With a margin along the top */
+
+#header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* eas */
+    /* Put both into flexboxes */
+    /* Align them one above the other */
+    /* Align them centrally on the page */
+    
+/* options */
+    /* space between the four options */
