@@ -5,6 +5,10 @@ let color = "black";
 const container = document.querySelector(".container");
 
 function makeGrid() {
+    // Delete all current cells
+    const oldCells = document.querySelectorAll(".cell");
+    oldCells.forEach(box => {box.remove();});
+
     // Define the number of columns and rows
     let rows = prompt("Choose the grid size");
 
@@ -26,15 +30,17 @@ function makeGrid() {
         cell.className = "cell";
         container.appendChild(cell);
     };
+
+    const cells = document.querySelectorAll(".cell");
+    cells.forEach(cell => {
+        cell.addEventListener("mouseover", changeColor);
+    });
 };
 
 makeGrid();
 
-// Selecting 
-const cells = document.querySelectorAll(".cell");
-cells.forEach(cell => {
-    cell.addEventListener("mouseover", changeColor);
-});
+
+
 
 function changeColor(e) {
     e.target.style.backgroundColor = color;
@@ -45,13 +51,22 @@ const black = document.querySelector(".black");
 const rainbow = document.querySelector(".rainbow");
 const erase = document.querySelector(".erase");
 const reset = document.querySelector(".reset");
+const newGrid = document.querySelector(".new-grid");
 
 black.addEventListener("click", () => {color = "black"});
 rainbow.addEventListener("click", () => {color = "red"});
 erase.addEventListener("click", () => {color = "white"});
-reset.addEventListener("click", () => {resetGrid()});
+reset.addEventListener("click", () => {
+    resetGrid();
+    if(color === "white") {color = "black"};
+});
+newGrid.addEventListener("click", () => {
+    makeGrid();
+    color = "black";
+});
 
 function resetGrid() {
+    const cells = document.querySelectorAll(".cell");
     cells.forEach(cell => {
         cell.style.backgroundColor = "white";
     });
